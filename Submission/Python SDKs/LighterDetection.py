@@ -1,7 +1,9 @@
+import os
+import time
+import uuid
 import requests
-import os, time, uuid
-from urllib.parse import urlparse
 from io import BytesIO
+from dotenv import load_dotenv
 from PIL import Image, ImageDraw
 import matplotlib.pyplot as plt
 
@@ -10,18 +12,21 @@ from azure.cognitiveservices.vision.customvision.prediction import CustomVisionP
 from azure.cognitiveservices.vision.customvision.training.models import ImageFileCreateBatch, ImageFileCreateEntry, Region
 from msrest.authentication import ApiKeyCredentials
 
-# ── Credentials ───────────────────────────────────────────────────────────────
-TRAINING_ENDPOINT     = "ENTER TRAINING ENDPOINT HERE"
-training_key          = "ENTER TRAINING RESOURCE KEY HERE"
-training_resource_id  = "ENTER TRAINING RESOURCE ID HERE"
-PREDICTION_ENDPOINT   = "ENTER PREDICTION ENDPOINT HERE"  # Note: endpoint, not key
-prediction_key        = "ENTER PREDICTION RESOURCE KEY HERE"
-prediction_resource_id = "ENTER PREDICTION RESOURCE ID HERE"
+# ── Load Environment Variables ────────────────────────────────────────────────
+load_dotenv()
 
-training_credentials   = ApiKeyCredentials(in_headers={"Training-key": training_key})
+TRAINING_ENDPOINT      = os.getenv("CUSTOM_VISION_TRAINING_ENDPOINT")
+TRAINING_KEY           = os.getenv("CUSTOM_VISION_TRAINING_KEY")
+TRAINING_RESOURCE_ID   = os.getenv("CUSTOM_VISION_TRAINING_RESOURCE_ID")
+PREDICTION_ENDPOINT    = os.getenv("CUSTOM_VISION_PREDICTION_ENDPOINT")
+PREDICTION_KEY         = os.getenv("CUSTOM_VISION_PREDICTION_KEY")
+PREDICTION_RESOURCE_ID = os.getenv("CUSTOM_VISION_PREDICTION_RESOURCE_ID")
+
+# ── Clients ───────────────────────────────────────────────────────────────────
+training_credentials   = ApiKeyCredentials(in_headers={"Training-key": TRAINING_KEY})
 trainer                = CustomVisionTrainingClient(TRAINING_ENDPOINT, training_credentials)
 
-prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": prediction_key})
+prediction_credentials = ApiKeyCredentials(in_headers={"Prediction-key": PREDICTION_KEY})
 predictor              = CustomVisionPredictionClient(PREDICTION_ENDPOINT, prediction_credentials)
 
 # ── TASK 2 (Optional): Create Project via API ─────────────────────────────────
@@ -33,7 +38,7 @@ obj_detection_domain = next(
 
 # Create a new project
 project_name = uuid.uuid4()
-project = trainer.create_project(project_name, domain_id=obj_detection_domain.id)
+project      = trainer.create_project(project_name, domain_id=obj_detection_domain.id)
 print("Project created:", project.as_dict())
 print("Project status:", project.status)
 
@@ -42,8 +47,8 @@ lighter_tag = trainer.create_tag(project.id, "Lighter")
 print("Tag created: Lighter")
 
 # ── TASK 3: Train the Model ───────────────────────────────────────────────────
-# Note: if training via the UI at customvision.ai, you can skip to
-# get_iterations() below and just reference your existing project ID
+# Note: if you trained via the UI at customvision.ai, skip down to
+# get_iterations() and reference your existing project ID instead
 
 iteration = trainer.train_project(project.id)
 while iteration.status != "Completed":
@@ -64,12 +69,10 @@ model_perf = trainer.get_iteration_performance(project.id, iteration_list[0].id)
 print("\nModel Performance:")
 print(model_perf.as_dict())
 
-# Explicitly print precision and recall for the task requirement
 print("\nPrecision: {0:.2f}%".format(model_perf.precision * 100))
 print("Recall:    {0:.2f}%".format(model_perf.recall * 100))
 print("mAP:       {0:.2f}%".format(model_perf.average_precision * 100))
 
-# Per-tag performance breakdown
 for tag_perf in model_perf.per_tag_performance:
     print("\nTag: {}".format(tag_perf.name))
     print("  Precision: {0:.2f}%".format(tag_perf.precision * 100))
@@ -79,23 +82,21 @@ for tag_perf in model_perf.per_tag_performance:
 # ── TASK 6: Publish / Deploy to Endpoint ─────────────────────────────────────
 publish_iteration_name = "udacity-2-classes-object-detection-custom"
 
-trainer.publish_iteration(project.id, iteration.id, publish_iteration_name, prediction_resource_id)
+trainer.publish_iteration(project.id, iteration.id, publish_iteration_name, PREDICTION_RESOURCE_ID)
 print("\nModel published!")
 print("Endpoint URL: {}/customvision/v3.0/Prediction/{}/detect/iterations/{}/image".format(
     PREDICTION_ENDPOINT, project.id, publish_iteration_name
 ))
 
-# ── Helper: display image from URL ───────────────────────────────────────────
+# ── Helper: Display Image from URL ────────────────────────────────────────────
 def show_image_from_url(img_url):
     response = requests.get(img_url)
-    img = Image.open(BytesIO(response.content))
+    img      = Image.open(BytesIO(response.content))
     plt.figure(figsize=(20, 10))
     plt.imshow(img)
     plt.show()
 
 # ── TASK 7 & 8: Predict on Test Images from GitHub ───────────────────────────
-# Base URL for the project starter images on GitHub
-# Update this to the correct path in the Udacity repo
 BASE_IMAGE_URL = "https://raw.githubusercontent.com/dylquinn/cd0461-building-computer-vision-solutions-with-azure-project-starter/master/starter/lighter_test_images/"
 
 test_images = [
@@ -108,7 +109,7 @@ test_images = [
 
 def perform_prediction_from_url(image_url):
     print(f"\nRunning prediction on: {image_url}")
-    response = requests.get(image_url)
+    response   = requests.get(image_url)
     image_data = response.content
 
     results = predictor.detect_image(project.id, publish_iteration_name, image_data)
