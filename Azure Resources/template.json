@@ -31,7 +31,7 @@
     "resources": [
         {
             "type": "Microsoft.CognitiveServices/accounts",
-            "apiVersion": "2025-10-01-preview",
+            "apiVersion": "2025-12-01",
             "name": "[parameters('accounts_customvisionsolutionkioskprojectdq_name')]",
             "location": "eastus",
             "sku": {
@@ -51,7 +51,7 @@
         },
         {
             "type": "Microsoft.CognitiveServices/accounts",
-            "apiVersion": "2025-10-01-preview",
+            "apiVersion": "2025-12-01",
             "name": "[parameters('accounts_customvisionsolutionkioskprojectdq_Prediction_name')]",
             "location": "eastus",
             "sku": {
@@ -71,7 +71,7 @@
         },
         {
             "type": "Microsoft.CognitiveServices/accounts",
-            "apiVersion": "2025-10-01-preview",
+            "apiVersion": "2025-12-01",
             "name": "[parameters('accounts_document_intelligencedq_name')]",
             "location": "eastus",
             "sku": {
@@ -94,7 +94,7 @@
         },
         {
             "type": "Microsoft.CognitiveServices/accounts",
-            "apiVersion": "2025-10-01-preview",
+            "apiVersion": "2025-12-01",
             "name": "[parameters('accounts_Faceapi_dq_resource_name')]",
             "location": "eastus",
             "sku": {
@@ -117,7 +117,7 @@
         },
         {
             "type": "Microsoft.Storage/storageAccounts",
-            "apiVersion": "2025-06-01",
+            "apiVersion": "2025-08-01",
             "name": "[parameters('storageAccounts_apkstoragedq_name')]",
             "location": "eastus",
             "sku": {
@@ -163,7 +163,7 @@
         },
         {
             "type": "Microsoft.Storage/storageAccounts/blobServices",
-            "apiVersion": "2025-06-01",
+            "apiVersion": "2025-08-01",
             "name": "[concat(parameters('storageAccounts_apkstoragedq_name'), '/default')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_apkstoragedq_name'))]"
@@ -173,6 +173,9 @@
                 "tier": "Standard"
             },
             "properties": {
+                "staticWebsite": {
+                    "enabled": false
+                },
                 "containerDeleteRetentionPolicy": {
                     "enabled": true,
                     "days": 7
@@ -194,6 +197,28 @@
                             "allowedHeaders": [
                                 "*"
                             ]
+                        },
+                        {
+                            "allowedOrigins": [
+                                "https://contentunderstanding.ai.azure.com"
+                            ],
+                            "allowedMethods": [
+                                "DELETE",
+                                "GET",
+                                "HEAD",
+                                "MERGE",
+                                "OPTIONS",
+                                "PATCH",
+                                "POST",
+                                "PUT"
+                            ],
+                            "maxAgeInSeconds": 120,
+                            "exposedHeaders": [
+                                "*"
+                            ],
+                            "allowedHeaders": [
+                                "*"
+                            ]
                         }
                     ]
                 },
@@ -206,7 +231,7 @@
         },
         {
             "type": "Microsoft.Storage/storageAccounts/fileServices",
-            "apiVersion": "2025-06-01",
+            "apiVersion": "2025-08-01",
             "name": "[concat(parameters('storageAccounts_apkstoragedq_name'), '/default')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_apkstoragedq_name'))]"
@@ -234,7 +259,7 @@
         },
         {
             "type": "Microsoft.Storage/storageAccounts/queueServices",
-            "apiVersion": "2025-06-01",
+            "apiVersion": "2025-08-01",
             "name": "[concat(parameters('storageAccounts_apkstoragedq_name'), '/default')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_apkstoragedq_name'))]"
@@ -247,7 +272,7 @@
         },
         {
             "type": "Microsoft.Storage/storageAccounts/tableServices",
-            "apiVersion": "2025-06-01",
+            "apiVersion": "2025-08-01",
             "name": "[concat(parameters('storageAccounts_apkstoragedq_name'), '/default')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_apkstoragedq_name'))]"
@@ -270,11 +295,62 @@
                 "type": "SystemAssigned"
             },
             "properties": {
-                "accountId": "0db336b6-8559-4eb5-93aa-f0de0b3a2328",
+                "accountId": "a555528e-6aee-43ad-a60b-ec34974e1d84",
                 "storageServices": {
                     "resourceId": "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_apkstoragedq_name'))]"
                 },
                 "publicNetworkAccess": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+            "apiVersion": "2025-08-01",
+            "name": "[concat(parameters('storageAccounts_apkstoragedq_name'), '/default/cq8d3elfpp-encoded-487fa')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccounts_apkstoragedq_name'), 'default')]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_apkstoragedq_name'))]"
+            ],
+            "properties": {
+                "immutableStorageWithVersioning": {
+                    "enabled": false
+                },
+                "defaultEncryptionScope": "$account-encryption-key",
+                "denyEncryptionScopeOverride": false,
+                "publicAccess": "None"
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+            "apiVersion": "2025-08-01",
+            "name": "[concat(parameters('storageAccounts_apkstoragedq_name'), '/default/cq8d3elfpp-input-df2fb')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccounts_apkstoragedq_name'), 'default')]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_apkstoragedq_name'))]"
+            ],
+            "properties": {
+                "immutableStorageWithVersioning": {
+                    "enabled": false
+                },
+                "defaultEncryptionScope": "$account-encryption-key",
+                "denyEncryptionScopeOverride": false,
+                "publicAccess": "None"
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+            "apiVersion": "2025-08-01",
+            "name": "[concat(parameters('storageAccounts_apkstoragedq_name'), '/default/trainingdataboardingpass')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccounts_apkstoragedq_name'), 'default')]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_apkstoragedq_name'))]"
+            ],
+            "properties": {
+                "immutableStorageWithVersioning": {
+                    "enabled": false
+                },
+                "defaultEncryptionScope": "$account-encryption-key",
+                "denyEncryptionScopeOverride": false,
+                "publicAccess": "None"
             }
         }
     ]
