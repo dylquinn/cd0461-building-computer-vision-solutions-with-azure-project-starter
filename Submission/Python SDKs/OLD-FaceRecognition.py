@@ -1,3 +1,19 @@
+import os
+from dotenv import load_dotenv
+
+load_dotenv()  # reads the .env file automatically
+
+FORM_RECOGNIZER_ENDPOINT  = os.getenv("FORM_RECOGNIZER_ENDPOINT")
+FORM_RECOGNIZER_KEY       = os.getenv("FORM_RECOGNIZER_KEY")
+FACE_ENDPOINT             = os.getenv("FACE_ENDPOINT")
+FACE_KEY                  = os.getenv("FACE_KEY")
+PREDICTION_ENDPOINT       = os.getenv("PREDICTION_ENDPOINT")
+PREDICTION_KEY            = os.getenv("PREDICTION_KEY")
+PREDICTION_PROJECT_ID     = os.getenv("PREDICTION_PROJECT_ID")
+PREDICTION_ITERATION_NAME = os.getenv("PREDICTION_ITERATION_NAME")
+TRAINING_DATA_SAS_URL     = os.getenv("TRAINING_DATA_SAS_URL")
+BOARDING_PASS_MODEL_ID    = os.getenv("BOARDING_PASS_MODEL_ID")
+
 import datetime
 import pandas as pd
 from PIL import Image, ImageDraw

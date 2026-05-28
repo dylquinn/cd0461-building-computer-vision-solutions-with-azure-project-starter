@@ -173,7 +173,7 @@ def detect_lighter(luggage_image_url):
     image_data = response.content
     results    = predictor.detect_image(PREDICTION_PROJECT_ID, PREDICTION_ITERATION_NAME, image_data)
     for prediction in results.predictions:
-        if prediction.tag_name == "Lighter" and prediction.probability > 0.5:
+        if prediction.tag_name == "Lighter" and prediction.probability > 0.35:
             print(f"  Lighter detected with confidence: {prediction.probability:.2f}")
             return True
     print("  No lighter detected above threshold")
