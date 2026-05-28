@@ -1,0 +1,14 @@
+# ── TASK 1: Upload Video ──────────────────────────────────────────────────────
+# Using the sample video from the Udacity starter repo
+VIDEO_URL = "https://raw.githubusercontent.com/dylquinn/cd0461-building-computer-vision-solutions-with-azure-project-starter/master/starter/digital-video-sample/avkash-boarding-pass.mp4"
+
+uploaded_video_id = video_analysis.upload_to_video_indexer(
+    input_filename=VIDEO_URL,
+    video_name='avkash-boarding-pass',
+    video_language='English'
+)
+print("Uploaded video ID:", uploaded_video_id)
+
+# ── Wait for processing ───────────────────────────────────────────────────────
+print("Waiting for video to process...")
+time.sleep(60)  # increase if needed — 60s is usually enough for a 30s video

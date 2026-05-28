@@ -1,0 +1,236 @@
+Columns: ['Passanger Name', 'First Name', 'Last Name', 'Date of Birth', 'Sex', 'Carrier', 'Flight No.', 'Class', 'From', 'To', 'Date', 'Baggage', 'Seat', 'Gate', 'Boarding Time', 'Ticket No.', 'Passenger Name Validation', 'Passenger Date of Birth Validation', 'Passenger Face Validation', 'Passenger Flight Details Validation', 'Passenger Carry-on Baggage Validation']
+First row: ['Sameer Kumar', 'Sameer', 'Kumar', '1990-01-25', 'Male', 'UA', np.int64(234), 'Economy', 'San Francisco', 'Chicago', 'April 20, 2022', 'YES', '34A', 'G1', '10:00 AM PST', np.int64(34236746), np.False_, np.False_, np.False_, np.False_, np.float64(nan)]
+Columns: ['Passanger Name', 'First Name', 'Last Name', 'Date of Birth', 'Sex', 'Carrier', 'Flight No.', 'Class', 'From', 'To', 'Date', 'Baggage', 'Seat', 'Gate', 'Boarding Time', 'Ticket No.', 'Passenger Name Validation', 'Passenger Date of Birth Validation', 'Passenger Face Validation', 'Passenger Flight Details Validation', 'Passenger Carry-on Baggage Validation']
+First row: ['Sameer Kumar', 'Sameer', 'Kumar', '1990-01-25', 'Male', 'UA', np.int64(234), 'Economy', 'San Francisco', 'Chicago', 'April 20, 2022', 'YES', '34A', 'G1', '10:00 AM PST', np.int64(34236746), np.False_, np.False_, np.False_, np.False_, np.float64(nan)]
+
+Processing passenger: SAMEER KUMAR
+  Raw ID extraction — FirstName: 'Sameer' | LastName: 'Kumar'
+  Face match confidence: 0.09 — identical: False
+  Lighter detected with confidence: 0.55
+  Name comparison:
+    Manifest: 'SAMEER KUMAR'
+    ID:       'SAMEER KUMAR'
+    BP:       'SAMEER KUMAR'
+  Flight details comparison:
+    Flight No.    — manifest: '234' | BP: '234'
+    Seat          — manifest: '34A' | BP: '34A'
+    Class         — manifest: 'ECONOMY' | BP: 'E'
+    From          — manifest: 'SAN FRANCISCO' | BP: 'SAN FRANCISCO'
+    To            — manifest: 'CHICAGO' | BP: 'CHICAGO'
+    Date          — manifest: 'April 20, 2022' | BP: 'April 20, 2022'
+    Boarding Time — manifest: '10:00 AM PST' | BP: 'PST'
+
+============================================================
+KIOSK SCREEN MESSAGE
+============================================================
+
+Dear Sameer Kumar,
+
+You are welcome to flight #234 leaving at 10:00 AM PST
+from San Francisco to Chicago.
+Your seat number is 34A, and it is confirmed.
+    
+We have found a prohibited item in your carry-on baggage,
+and it is flagged for removal.
+
+Your identity could not be verified.
+Please see a customer service representative.
+
+Validations passed: 3/5
+STATUS: CLEARED TO BOARD ✓
+============================================================
+
+Processing passenger: RADHA S. KUMAR
+  Raw ID extraction — FirstName: 'Radha' | LastName: 'S Kumar'
+  Face match confidence: 0.09 — identical: False
+  Lighter detected with confidence: 0.48
+  Name comparison:
+    Manifest: 'RADHA S KUMAR'
+    ID:       'RADHA S KUMAR'
+    BP:       'RADHA S KUMAR'
+  Flight details comparison:
+    Flight No.    — manifest: '234' | BP: '234'
+    Seat          — manifest: '34B' | BP: '34B'
+    Class         — manifest: 'ECONOMY' | BP: 'E'
+    From          — manifest: 'SAN FRANCISCO' | BP: 'SAN FRANCISCO'
+    To            — manifest: 'CHICAGO' | BP: 'CHICAGO'
+    Date          — manifest: 'April 20, 2022' | BP: 'April 20, 2022'
+    Boarding Time — manifest: '10:00 AM PST' | BP: 'PST'
+
+============================================================
+KIOSK SCREEN MESSAGE
+============================================================
+
+Dear Radha S. Kumar,
+
+You are welcome to flight #234 leaving at 10:00 AM PST
+from San Francisco to Chicago.
+Your seat number is 34B, and it is confirmed.
+    
+We have found a prohibited item in your carry-on baggage,
+and it is flagged for removal.
+
+Your identity could not be verified.
+Please see a customer service representative.
+
+Validations passed: 3/5
+STATUS: CLEARED TO BOARD ✓
+============================================================
+
+Processing passenger: JAMES WEBB
+  Raw ID extraction — FirstName: 'James' | LastName: 'Webb'
+  Face match confidence: 0.10 — identical: False
+  Lighter detected with confidence: 0.52
+  Name comparison:
+    Manifest: 'JAMES WEBB'
+    ID:       'JAMES WEBB'
+    BP:       'JAMES WEBB'
+  Flight details comparison:
+    Flight No.    — manifest: '234' | BP: '234'
+    Seat          — manifest: '1A' | BP: '1A'
+    Class         — manifest: 'BUSINESS' | BP: 'B'
+    From          — manifest: 'SAN FRANCISCO' | BP: 'SAN FRANCISCO'
+    To            — manifest: 'CHICAGO' | BP: 'CHICAGO'
+    Date          — manifest: 'April 20, 2022' | BP: 'April 20, 2022'
+    Boarding Time — manifest: '10:00 AM PST' | BP: 'PST'
+
+============================================================
+KIOSK SCREEN MESSAGE
+============================================================
+
+Dear James Webb,
+
+You are welcome to flight #234 leaving at 10:00 AM PST
+from San Francisco to Chicago.
+Your seat number is 1A, and it is confirmed.
+    
+We have found a prohibited item in your carry-on baggage,
+and it is flagged for removal.
+
+Your identity could not be verified.
+Please see a customer service representative.
+
+Validations passed: 3/5
+STATUS: CLEARED TO BOARD ✓
+============================================================
+
+Processing passenger: LIBBY HEROLD
+  Raw ID extraction — FirstName: 'Libby' | LastName: 'Herold'
+  Face match confidence: 0.10 — identical: False
+  Lighter detected with confidence: 0.62
+  Name comparison:
+    Manifest: 'LIBBY HEROLD'
+    ID:       'LIBBY HEROLD'
+    BP:       'LIBBY HEROLD'
+  Flight details comparison:
+    Flight No.    — manifest: '234' | BP: '234'
+    Seat          — manifest: '3D' | BP: '3D'
+    Class         — manifest: 'BUSINESS' | BP: 'B'
+    From          — manifest: 'SAN FRANCISCO' | BP: 'SAN FRANCISCO'
+    To            — manifest: 'CHICAGO' | BP: 'CHICAGO'
+    Date          — manifest: 'April 20, 2022' | BP: 'April 20, 2022'
+    Boarding Time — manifest: '10:00 AM PST' | BP: 'PST'
+
+============================================================
+KIOSK SCREEN MESSAGE
+============================================================
+
+Dear Libby Herold,
+
+You are welcome to flight #234 leaving at 10:00 AM PST
+from San Francisco to Chicago.
+Your seat number is 3D, and it is confirmed.
+    
+We have found a prohibited item in your carry-on baggage,
+and it is flagged for removal.
+
+Your identity could not be verified.
+Please see a customer service representative.
+
+Validations passed: 3/5
+STATUS: CLEARED TO BOARD ✓
+============================================================
+
+Processing passenger: JAMES JACKSON
+  Raw ID extraction — FirstName: 'James' | LastName: 'Jackson'
+  Face match confidence: 0.09 — identical: False
+  Lighter detected with confidence: 0.68
+  Name comparison:
+    Manifest: 'JAMES JACKSON'
+    ID:       'JAMES JACKSON'
+    BP:       'JAMES JACKSON'
+  Flight details comparison:
+    Flight No.    — manifest: '234' | BP: '234'
+    Seat          — manifest: '25B' | BP: '25B'
+    Class         — manifest: 'ECONOMY' | BP: 'E'
+    From          — manifest: 'SAN FRANCISCO' | BP: 'SAN FRANCISCO'
+    To            — manifest: 'CHICAGO' | BP: 'CHICAGO'
+    Date          — manifest: 'April 20, 2022' | BP: 'April 20, 2022'
+    Boarding Time — manifest: '10:00 AM PST' | BP: 'PST'
+
+============================================================
+KIOSK SCREEN MESSAGE
+============================================================
+
+Dear James Jackson,
+
+You are welcome to flight #234 leaving at 10:00 AM PST
+from San Francisco to Chicago.
+Your seat number is 25B, and it is confirmed.
+    
+We have found a prohibited item in your carry-on baggage,
+and it is flagged for removal.
+
+Your identity could not be verified.
+Please see a customer service representative.
+
+Validations passed: 3/5
+STATUS: CLEARED TO BOARD ✓
+============================================================
+
+Processing passenger: AVKASH CHAUHAN
+  Raw ID extraction — FirstName: 'AVKASH CHAUHAN' | LastName: 'CHAUHAN'
+  Face match confidence: 0.96 — identical: True
+  Lighter detected with confidence: 0.55
+  Name comparison:
+    Manifest: 'AVKASH CHAUHAN'
+    ID:       'AVKASH CHAUHAN'
+    BP:       'AVKASH CHAUHAN'
+  Flight details comparison:
+    Flight No.    — manifest: '234' | BP: '234'
+    Seat          — manifest: '20A' | BP: '20A'
+    Class         — manifest: 'ECONOMY' | BP: 'E'
+    From          — manifest: 'SAN FRANCISCO' | BP: 'SAN FRANCISCO'
+    To            — manifest: 'CHICAGO' | BP: 'CHICAGO'
+    Date          — manifest: 'April 20, 2022' | BP: 'April 20, 2022'
+    Boarding Time — manifest: '10:00 AM PST' | BP: 'PST'
+
+============================================================
+KIOSK SCREEN MESSAGE
+============================================================
+
+Dear Avkash Chauhan,
+
+You are welcome to flight #234 leaving at 10:00 AM PST
+from San Francisco to Chicago.
+Your seat number is 20A, and it is confirmed.
+    
+We have found a prohibited item in your carry-on baggage,
+and it is flagged for removal.
+
+Your identity is verified so please board the plane.
+
+Validations passed: 4/5
+STATUS: CLEARED TO BOARD ✓
+============================================================
+
+Final manifest saved to manifest_validated.csv
+
+Validation Summary:
+Passanger Name  Passenger Name Validation  Passenger Date of Birth Validation  Passenger Face Validation  Passenger Flight Details Validation  Passenger Carry-on Baggage Validation
+  Sameer Kumar                       True                                True                      False                                 True                                  False
+Radha S. Kumar                       True                                True                      False                                 True                                  False
+    James Webb                       True                                True                      False                                 True                                  False
+  Libby Herold                       True                                True                      False                                 True                                  False
+ James Jackson                       True                                True                      False                                 True                                  False
+Avkash Chauhan                       True                                True                       True                                 True                                  False

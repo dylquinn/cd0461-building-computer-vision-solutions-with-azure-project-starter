@@ -1,0 +1,20 @@
+Libraries:
+	1.	os
+	2.	doting
+	3.	pandas
+	4.	requests
+	5.	io
+	6.	from azure.core.credentials import AzureKeyCredential
+	7.	from azure.ai.formrecognizer import DocumentAnalysisClient
+	8.	from azure.ai.vision.face import FaceClient
+	9.	from azure.ai.vision.face.models import FaceDetectionModel, FaceRecognitionModel
+	10.	from azure.cognitiveservices.vision.customvision.prediction import CustomVisionPredictionClient
+	11.	
+	12.	from msrest.authentication import ApiKeyCredentials
+	13.	PIL
+	14.	import time
+	15.	import glob
+	16.	import matplotlib.pyplot as plt
+	17.	video_indexer
+	18.	from azure.core.exceptions import ResourceNotFoundError
+	19.	from azure.ai.formrecognizer import DocumentAnalysisClient, DocumentModelAdministrationClient

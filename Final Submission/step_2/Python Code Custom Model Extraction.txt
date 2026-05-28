@@ -1,0 +1,17 @@
+def extract_boarding_pass_data(bp_url):
+    poller = doc_client.begin_analyze_document_from_url(BOARDING_PASS_MODEL_ID, bp_url)
+    result = poller.result()
+    doc    = result.documents[0]
+    def get(field):
+        f = doc.fields.get(field)
+        return f.value if f else ""
+    return {
+        "passenger_name": get("PassengerName"),
+        "flight_number":  get("FlightNumber"),
+        "seat":           get("Seat"),
+        "class":          get("Class"),
+        "origin":         get("Source"),         # was "FromCity"
+        "destination":    get("Destination"),    # was "ToCity"
+        "date":           get("Date"),
+        "boarding_time":  get("BoardingTime"),
+    }
